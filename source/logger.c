@@ -57,11 +57,11 @@ LoggerInfo openLogFile(const char* path_to_file)
 
 
 LoggerInfo writeLog_(LogLevel    level,
-                const char* file,
-                const char* function,
-                int         line,
-                const char* message,
-                ...)
+                     const char* file,
+                     const char* function,
+                     int         line,
+                     const char* message,
+                     ...)
 {
     assertStrict(message  != NULL);
     assertStrict(file     != NULL);

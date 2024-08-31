@@ -11,6 +11,17 @@
 #include "../include/string_color.h"
 
 
+size_t getFileSize(FILE* file) {
+    assertStrict(file != NULL);
+
+    fseek(file, 0, SEEK_END);
+    long int size_of_file = ftello(file);
+    rewind(file);
+
+    return (size_t)size_of_file;
+}
+
+
 ClearBufferMessage clearBuffer(void)
 {
     int current_char = 0;

@@ -1,7 +1,7 @@
 #ifndef STRING_COLOR_H
 #define STRING_COLOR_H
 
-#ifdef __linux__
+#if defined (__linux__)
 
 #define BLACK          "\033[30m"
 #define RED            "\033[31m"

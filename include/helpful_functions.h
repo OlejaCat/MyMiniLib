@@ -3,6 +3,14 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
+
+
+#define FREE_NULL(point_) free(point_); \
+                          point_ = NULL
+
+#define FCLOSE_NULL(file_) fclose(file_); \
+                           file_ = NULL
 
 #ifndef NDEBUG
 #define assertStrict(expression_string) \
@@ -22,7 +30,7 @@
 
 #define SIZE_OF_ARRAY(arr) (sizeof(arr) / sizeof(arr[0]))
 
-static const double EPS =  1e-8;
+static const double EPS = 1e-8;
 
 
 typedef enum ClearBufferMessage
@@ -30,6 +38,14 @@ typedef enum ClearBufferMessage
     ClearBufferMessage_NOT_ONLY_SPACES = 0,
     ClearBufferMessage_ONLY_SPACES     = 1,
 } ClearBufferMessage;
+
+//-----------------------------
+//! Gets file and returns its size
+//!
+//! @param [in] file point to file
+//!
+//! @return Size of file
+size_t getFileSize(FILE* file);
 
 //------------------------------------------------------
 //! Checks if number is negative or positive infinity
