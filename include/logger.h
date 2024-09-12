@@ -6,9 +6,9 @@
 #endif // STRINGIFY
 
 #ifndef NDEBUG
-#define writeLog(level, ...) writeLog_(level, __FILE__, __func__, __LINE__, __VA_ARGS__);
+#define Log(level, ...) writeLog_(level, __FILE__, __func__, __LINE__, __VA_ARGS__);
 #else
-#define writeLog(level, ...) ;
+#define Log(level, ...) ;
 #endif
 
 static const char PATH_LOG_FILE[]  = "logfile.txt";

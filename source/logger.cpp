@@ -12,6 +12,7 @@
 
 static FILE* logger_file = NULL;
 
+
 //----------------------------------------
 //! Converts level to string
 //!

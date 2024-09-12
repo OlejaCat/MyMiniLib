@@ -15,7 +15,7 @@ size_t getFileSize(FILE* file) {
     assertStrict(file != NULL);
 
     fseek(file, 0, SEEK_END);
-    long int size_of_file = ftello(file);
+    long int size_of_file = ftell(file);
     rewind(file);
 
     return (size_t)size_of_file;
