@@ -60,10 +60,10 @@ void assertStrict_(const char* expression_string,
 
 
 int assertSoft_(const char* expression_string,
-                  const bool  expression,
-                  const char* file_name,
-                  const char* function_name,
-                  const int   line)
+                const bool  expression,
+                const char* file_name,
+                const char* function_name,
+                const int   line)
 {
     if (expression) { return 0; }
 
@@ -85,18 +85,27 @@ void clearScreen(void)
 
 bool equatTwoDoubles(const double a, const double b)
 {
+    assertStrict(isFinite(a));
+    assertStrict(isFinite(b));
+
     return (fabs(a - b) < EPS);
 }
 
 
 bool compareGreaterTwoDoubles(const double a, const double b)
 {
+    assertStrict(isFinite(a));
+    assertStrict(isFinite(b));
+
     return (a - b > EPS);
 }
 
 
 bool compareLessTwoDoubles(const double a, const double b)
 {
+    assertStrict(isFinite(a));
+    assertStrict(isFinite(b));
+
     return (b - a > EPS);
 }
 
