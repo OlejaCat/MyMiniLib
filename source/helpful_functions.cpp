@@ -117,23 +117,26 @@ void swap(void* data_a, void* data_b, size_t size)
 
     size_t counter_64 = size / sizeof(uint64_t);
 
-    uint64_t  temp_64 = 0;
     uint64_t* casted_64_a = (uint64_t*)data_a;
     uint64_t* casted_64_b = (uint64_t*)data_b;
 
-    for (size_t i = 0; i < size / sizeof(uint64_t); i++)
+    for (size_t i = 0; i < counter_64; i++)
     {
-        temp_64 = casted_64_a[i];
-                  casted_64_a[i] = casted_64_b[i];
-                                   casted_64_b[i] = temp_64;
+        uint64_t  temp_64 = 0;
+
+        memcpy(&temp_64, casted_64_a + i, sizeof(uint64_t));
+                  memcpy(casted_64_a + i, casted_64_b + i, sizeof(uint64_t));
+                                   memcpy(casted_64_b + i, &temp_64, sizeof(uint64_t));
+
     }
 
-    uint8_t temp_8 = 0;
     uint8_t* casted_8_a = (uint8_t*)data_a;
     uint8_t* casted_8_b = (uint8_t*)data_b;
 
     for (size_t i = counter_64 * sizeof(uint64_t); i < size; i++)
     {
+        uint8_t temp_8 = 0;
+
         temp_8 = casted_8_a[i];
                  casted_8_a[i] = casted_8_b[i];
                                  casted_8_b[i] = temp_8;
