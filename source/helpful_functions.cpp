@@ -106,18 +106,28 @@ void swap(void* data_a, void* data_b, size_t size)
     assertStrict(data_a != NULL);
     assertStrict(data_b != NULL);
 
-    uint8_t temp = 0;
-    uint8_t* casted_a = (uint8_t*)data_a;
-    uint8_t* casted_b = (uint8_t*)data_b;
-    for (size_t i = 0; i < size; i++)
-    {
-        // memcpy(&temp, ua + i, sizeof(uint8_t));
-        //        memcpy(ua + i, ub + i, sizeof(uint8_t));
-        //                memcpy(ub + i, &temp, sizeof(uint8_t));
+    size_t counter_64 = size / sizeof(uint64_t);
 
-        temp = casted_a[i];
-               casted_a[i] = casted_b[i];
-                             casted_b[i] = temp;
+    uint64_t  temp_64 = 0;
+    uint64_t* casted_64_a = (uint64_t*)data_a;
+    uint64_t* casted_64_b = (uint64_t*)data_b;
+
+    for (size_t i = 0; i < size / sizeof(uint64_t); i++)
+    {
+        temp_64 = casted_64_a[i];
+                  casted_64_a[i] = casted_64_b[i];
+                                   casted_64_b[i] = temp_64;
+    }
+
+    uint8_t temp_8 = 0;
+    uint8_t* casted_8_a = (uint8_t*)data_a;
+    uint8_t* casted_8_b = (uint8_t*)data_b;
+
+    for (size_t i = counter_64 * sizeof(uint64_t); i < size; i++)
+    {
+        temp_8 = casted_8_a[i];
+                 casted_8_a[i] = casted_8_b[i];
+                                 casted_8_b[i] = temp_8;
     }
 }
 
