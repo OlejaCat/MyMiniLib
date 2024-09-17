@@ -31,7 +31,7 @@ static void closeLogFile(void);
 // global --------------------------------------------------------------------------------------------------------------
 
 
-LoggerInfo openLogFile(const char* path_to_file)
+LoggerInfo openLogFile_(const char* path_to_file)
 {
     assertStrict(path_to_file != NULL);
 

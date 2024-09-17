@@ -32,7 +32,6 @@
 
 static const double EPS = 1e-8;
 
-
 typedef enum ClearBufferMessage
 {
     ClearBufferMessage_NOT_ONLY_SPACES = 0,

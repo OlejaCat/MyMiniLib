@@ -11,6 +11,12 @@
 #define Log(level, ...) ;
 #endif
 
+#ifndef NDEBUG
+#define openLogFile(path_to_file) openLogFile_(path_to_file)
+#else
+#define openLogFile(path_to_file) ;
+#endif
+
 static const char PATH_LOG_FILE[]  = "logfile.txt";
 
 typedef enum LoggerInfo {
@@ -52,6 +58,6 @@ LoggerInfo writeLog_(LogLevel    level,
 //!
 //! @return State
 //---------------------------------------------------
-LoggerInfo openLogFile(const char* path_to_file);
+LoggerInfo openLogFile_(const char* path_to_file);
 
 #endif // LOGGER_H
