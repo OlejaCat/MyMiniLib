@@ -1,6 +1,7 @@
 #include "work_with_doubles.h"
 
 #include <math.h>
+#include <stdint.h>
 
 #include "../include/my_asserts.h"
 
@@ -12,7 +13,10 @@ bool isInf(const double n)
 
 bool isNan(const double n)
 {
-    return n != n;
+    uint64_t exponent = ((uint64_t)n >> 52) & 0x7FF;
+    uint64_t mantissa = (uint64_t)n & 0xFFFFFFFFFFFFF;
+
+    return (exponent == 0x7FF) && (mantissa != 0);
 }
 
 
