@@ -2,6 +2,14 @@
 #define MY_ASSERTS_H
 
 #ifndef NDEBUG
+#define abortWithMessage(message_string) \
+   abortWithMessage_(message_string, __FILE__, __PRETTY_FUNCTION__, __LINE__);
+#else
+#define abortWithMessage(message) ;
+#endif
+
+
+#ifndef NDEBUG
 #define assertStrict(expression_string) \
  do \
     {assertStrict_(#expression_string, expression_string, __FILE__, __func__, __LINE__);} \
@@ -18,6 +26,19 @@
 #endif
 
 #define SIZE_OF_ARRAY(arr) (sizeof(arr) / sizeof(arr[0]))
+
+//-----------------------------------------------------------
+//! Aborts the program with given message
+//!
+//! @param [in] message    message to print in stderr
+//! @param [in] file_name  file name where abort is
+//! @param [in] function   function where abort is
+//! @param [in] line       line where is abort
+//-----------------------------------------------------------
+void abortWithMessage_(const char* message,
+                       const char* file_name,
+                       const char* function_name,
+                       const int   line);
 
 //----------------------------------------------------------
 //! Dublicates an assert functionality
