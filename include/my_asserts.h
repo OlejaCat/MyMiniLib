@@ -3,7 +3,9 @@
 
 #ifndef NDEBUG
 #define abortWithMessage(message_string) \
-   abortWithMessage_(message_string, __FILE__, __PRETTY_FUNCTION__, __LINE__);
+  do \
+   {abortWithMessage_(message_string, __FILE__, __PRETTY_FUNCTION__, __LINE__);} \
+  while (0)
 #else
 #define abortWithMessage(message) ;
 #endif
@@ -35,10 +37,10 @@
 //! @param [in] function   function where abort is
 //! @param [in] line       line where is abort
 //-----------------------------------------------------------
-void abortWithMessage_(const char* message,
-                       const char* file_name,
-                       const char* function_name,
-                       const int   line);
+[[noreturn]] void abortWithMessage_(const char* message,
+                                    const char* file_name,
+                                    const char* function_name,
+                                    const int   line);
 
 //----------------------------------------------------------
 //! Dublicates an assert functionality
@@ -52,7 +54,7 @@ void assertStrict_(const char* expression_string,
                    bool        expression,
                    const char* file_name,
                    const char* function_name,
-                   int         line);
+                   const int   line);
 
 //---------------------------------------------------------------
 //! Dublicates an assert functionality but is just returns State
